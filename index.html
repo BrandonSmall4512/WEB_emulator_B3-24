@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор Б3-24 Электроника</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<div class="instruction-container">
+  
+  <div class="instruction-content">
+      <h2>📖 Инструкция к калькулятору Б3-24</h2>
+      <p>Добро пожаловать! Этот эмулятор воспроизводит функционал советского калькулятора <b>Электроника Б3-24</b>.</p>
+
+      <h3>  Назначение клавиш</h3>
+      <ul>
+          <li><b>Числовые клавиши</b> (0-9) — ввод чисел.</li>
+          <li><b>+</b> — клавиша сложения и получения результата при сложении, умножении и делении.</li>
+          <li><b>-</b> — клавиша вычитания и получения результата при вычитании.</li>
+          <li><b>×</b> — клавиша умножения.</li>
+          <li><b>÷</b> — клавиша деления.</li>
+          <li><b>С</b> — клавиша общего сброса.</li>
+          <li><b>ИП</b> — клавиша вызова содержимого регистра памяти на индикацию (при повторном нажатии содержимое регистра памяти стирается).</li>
+          <li><b>П+</b> — клавиша добавления числа в память.</li>
+          <li><b>К</b> — клавиша работы с константой (при повторном нажатии - отказ от работы с константой).</li>
+          <li><b>/-/</b> — клавиша изменения знака числа в регистре ввода.</li>
+          <li><b>,</b> — клавиша ввода запятой.</li>
+      </ul>
+
+      <h3>Примеры использования</h3>
+      <ul>
+          <li>Сложение | Пример: 123 + 456 = 579 |  Порядок нажатий: 123 <b>+</b> 456 <b>+</b> .</li>
+          <li>Вычитание | Пример: 456 - 123 = 333 |  Порядок нажатий: 456 <b>+</b> 123 <b>-</b> .</li>
+          <li>Умножение | Пример: 12,4 × 3,651 = 45,2724 |  Порядок нажатий: 12,4 <b>×</b> 3,651 <b>+</b> .</li>
+          <li>Деление | Пример: 123 ÷ 56 = |  Порядок нажатий: 123 <b>÷</b> 56 <b>+</b> .</li>
+          <li>Умножение на константу | Пример: 18 × 6 = 108, 18 × 3 = 54, 18 × 5 = 90 |  Порядок нажатий: 18 <b>К</b> , <b>×</b> 6 <b>+</b> 3 <b>+</b> 5 <b>+</b> .</li>
+          <li>Деление на константу | Пример: 58 ÷ 5 = 11,6, 36 ÷ 5 = 7,2, 63 ÷ 5 = 12,6 |  Порядок нажатий: 5 <b>K</b> , <b>÷</b> 58 <b>+</b> 36 <b>+</b> 63 <b>+</b>.</li>
+          <li>Возведение в квадрат | Пример: 23^2 = 529 |  Порядок нажатий: 23 <b>×</b> <b>+</b> .</li>
+          <li>Возведение в целую положительную степень | Пример: 23^3 = 12167 |  Порядок нажатий: 23 <b>×</b> , <b>K</b> , <b>+</b> , <b>+</b> .</li>
+          <li>Работа с памятью | Пример: (123 × 456 + 789 ÷ 410) × 963,2 = 54025814 |  Порядок нажатий: 123 <b>×</b> 456 <b>П+</b> 789 <b>÷</b> 410 <b>П+</b> , <b>ИП</b> , <b>×</b> 963,2 <b>+</b> .</li>
+      </ul>
+
+      <h3>Описание возникновений переполнения</h3>
+      <ul>
+          <li>При переполнении в процессе вычислений любого из регистров загораются нули и запятые во всех 8-разрядах индикатора</li>
+          <li>Последующая работа возможна лишь после нажатия клавиши <b>С</b>. При первом наждатии клавиши <b>С</b> стирается содержимое регистра клавиатуры, при повторном нажатии происходит общий сброс калькулятора кроме памяти</li>
+          <li>Переполнение наступает при получении результата:</li>
+          <ul>
+            <li>более 9 значащих цифр до запятой для сложения, вычитания и деления</li>
+            <li>более 17 значащих цифр для умножения</li>
+            <li>при наборе 9 цифр без запятой, при делении на нуль</li>
+          </ul>
+      </ul>
+
+      <h3>Описание сегментов</h3>
+      <ul>
+        <img src="indicator.png"  style="width: 100%; height: auto; border-radius: 10px; margin-top: 20px;">
+      </ul>
+  </div>
+</div>
+
+
+  <div class="calculator">
+    
+    <div class="calculator-cover">
+      <span class="brand-name">ЭЛЕКТРОНИКА</span>
+    </div>
+
+
+    <div class="calculator-top">
+      <div class="segment-container">
+        <div class="segment segment-memory" id="memorySegment"></div>  
+        <div class="segment segment-constant" id="constantSegment"></div>  
+        <div class="segment segment-minus-left" id="minusLeftSegment"></div>
+        <div class="segment segment-overflow" id="overflowSegment"></div>
+      </div>
+      <div class="calculator-display"></div>
+    </div>
+
+   
+    <div class="toggle-switch-container">
+      <div class="rectangle"></div> 
+      <div class="toggle-switch" onclick="togglePower()">
+        <div class="switch"></div>
+        <div class="plate"></div>
+      </div>
+    </div>
+
+    
+    <div class="calculator-buttons">
+      <div class="rectangle_big"></div>
+      <div class="button red">С</div>
+      <div class="button green">ИП</div>
+      <div class="button green">K</div>
+      <div class="button green">÷</div>
+      <div class="button black">7</div>
+      <div class="button black">8</div>
+      <div class="button black">9</div>
+      <div class="button green">×</div>
+      <div class="button black">4</div>
+      <div class="button black">5</div>
+      <div class="button black">6</div>
+      <div class="button green">−</div>
+      <div class="button black">1</div>
+      <div class="button black">2</div>
+      <div class="button black">3</div>
+      <div class="button green">+</div>
+      <div class="button black">0</div>
+      <div class="button black">,</div>
+      <div class="button green">/−/</div>
+      <div class="button green">П+</div>
+    </div>
+    <div class="instruction-toggle" onclick="toggleInstruction()">Инструкция</div>
+  </div>
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
